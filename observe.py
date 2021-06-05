@@ -22,14 +22,14 @@ class Observe(View):
             "DoubleDQNAgent": "DeepQNetwork",
             "DuelingDoubleDQNAgent": "DuelingDeepQNetwork",
             "PerDuelingDoubleDQNAgent": "DuelingDeepQNetwork"
-        }[args.dir.split('_')[0].split('save/')[1]])(
+        }[args.d.split('_')[0].split('save/')[1]])(
             device(("cuda:" + args.gpu) if cuda.is_available() else "cpu"),
-            float(args.dir.split('_')[1].split('lr')[1]),
+            float(args.d.split('_')[1].split('lr')[1]),
             reduce(lambda x, y: x * y, list(self.env.observation_space.shape)),
             self.env.action_space.n
         )
 
-        self.network.load(args.dir)
+        self.network.load(args.d)
 
         self.obs = np.zeros(reduce(lambda x, y: x * y, list(self.env.observation_space.shape)), dtype=np.float32)
 

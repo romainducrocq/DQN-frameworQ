@@ -126,11 +126,11 @@ http://localhost:6006/
 ```
 OBSERVE
 
-python3 observe.py [-h] -dir DIR [-max_steps MAX_STEPS] [-gpu GPU]
+python3 observe.py [-h] -d D [-max_steps MAX_STEPS] [-gpu GPU]
 
 optional arguments:
   -h, --help            show this help message and exit
-  -dir DIR              Directory
+  -d D                  Directory
   -max_steps MAX_STEPS  Max episode steps
   -gpu GPU              GPU #
 ```
