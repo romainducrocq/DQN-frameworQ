@@ -45,17 +45,17 @@ make: `cd bin/ && bash make.sh`
 
 - initial-DQN: `demo/examples/initial-DQN.tar.gz`  
 
-![Demo gif 1](demo/gif/demo_1.gif)
+![Demo gif initial-DQN](demo/media/initial-DQN_demo.gif)
 
-![Demo tensorboard 1](demo/tensorboard/demo_tensorboard_1.png)
+![Demo tensorboard initial-DQN](demo/media/initial-DQN_demo_tensorboard.png)
 
 <br>
 
 - flappy-seamonkai: `demo/examples/flappy-seamonkai.tar.gz`  
 
-![Demo gif 2](demo/gif/demo_2.gif)
+![Demo gif flappy-seamonkai](demo/media/flappy-seamonkai_demo.gif)
 
-![Demo tensorboard 2](demo/tensorboard/demo_tensorboard_2.png)
+![Demo tensorboard flappy-seamonkai](demo/media/flappy-seamonkai_demo_tensorboard.png)
 
 ****
 
