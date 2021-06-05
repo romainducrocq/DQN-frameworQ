@@ -51,7 +51,7 @@ class Observe(View):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="OBSERVE")
-    parser.add_argument('-dir', type=str, default='', help='Directory', required=True)
+    parser.add_argument('-d', type=str, default='', help='Directory', required=True)
     parser.add_argument('-max_steps', type=int, default=HYPER_PARAMS['max_episode_steps'], help='Max episode steps')
     parser.add_argument('-gpu', type=str, default='0', help='GPU #')
 
