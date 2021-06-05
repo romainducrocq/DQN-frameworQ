@@ -1,6 +1,6 @@
 ### initial-DQN
 
-My own DQN framework for custom environments. Supports:  
+A DQN framework for custom environments. Supports:  
 - Custom environments with openai gym.  
 - Dynamic save and load with msgpack.  
 - Multi-processing learning.  
