@@ -14,8 +14,8 @@ The following algorithms are implemented:
 
 How to use:  
 1. Create a custom environment in `env/` and tune its hyperparameters in `dqn/config/dqn_config.py` (`demo/`).  
-2. Train the model with `python3 train.py -algo PerDuelingDoubleDQNAgent -max_total_steps 18000000`.  
-3. Observe the AI with `python3 observe.py -dir save/PerDuelingDoubleDQNAgent_lr5e-05_model.pack -max_steps 500`.  
+2. Train the model with `python3 train.py -algo PerDuelingDoubleDQNAgent -max_total_steps 10000000`.  
+3. Observe it with `python3 observe.py -dir save/PerDuelingDoubleDQNAgent_lr0.0001_model.pack -max_steps 0`.  
 4. Visualize the learning curves in tensorboard with `tensorboard --logdir ./logs/`.  
 5. And beat the AI with `python3 play.py` to assert dominance on the machines.  
 
@@ -38,22 +38,20 @@ See `demo/` for a complete guide on how to use bin scripts, build a custom envir
 
 ****
 
-### Demo
+### Custom environments with frameworkQ
+
+- initial-DQN: https://github.com/romainducrocq/initial-DQN  
 
 ![Demo gif 1](demo/gif/demo_1.gif)
 
 ![Demo tensorboard 1](demo/tensorboard/demo_tensorboard_1.png)
 
-![Demo gif 2](demo/gif/demo_1.gif)
+- flappy-seamonkai: https://github.com/romainducrocq/flappy-seamonkai  
+
+![Demo gif 2](demo/gif/demo_2.gif)
 
 ![Demo tensorboard 2](demo/tensorboard/demo_tensorboard_2.png)
 
 ****
 
-### Other custom environments
-
-flappy-seamonkai: https://github.com/romainducrocq/flappy-seamonkai
-
-****
-
-https://www.youtube.com/watch?v=dv13gl0a-FA  
+@rd

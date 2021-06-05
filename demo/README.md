@@ -22,7 +22,7 @@ All sections to be modified are indicated by comments. Are to be modified only:
 Create the custom environment model.  
 
 **package `env/custom_env/`**  
-1. create the environment model classes. E.g: car.py, track.py.  
+1. create the environment model classes. E.g: car.py, track.py (initial-DQN).  
 2. create additional resources. E.g: utils.py, img/.  
 
 **file `env/custom_env/utils.py`**  
