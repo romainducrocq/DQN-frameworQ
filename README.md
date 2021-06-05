@@ -23,7 +23,9 @@ See `demo/` for a complete guide on how to use bin scripts, build a custom envir
 
 ****
 
-### Software Requirements
+### Build dependencies
+
+make: `cd bin/ && bash make.sh`  
 
 - Python 3.7  
 > sudo apt-get update && sudo apt-get install build-essential libpq-dev libssl-dev openssl libffi-dev sqlite3 libsqlite3-dev libbz2-dev zlib1g-dev cmake python3.7 python3-pip python3.7-dev python3.7-venv  
