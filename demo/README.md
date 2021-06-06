@@ -59,27 +59,27 @@ Wrap the environment controller in gym.
 Wrap the environment view in pyglet.  
 
 **file `env/view.py`**, **class `PygletView`**   
-1. `PYGLET` -> _bool_: set to True.  
-2. `import`: import the environment utils global constants.  
-3. `__init__()`:  
+1. `DT` -> `float`: set the clock schedule interval.
+2. `PYGLET` -> _bool_: set to True.  
+3. `import`: import the environment utils global constants.  
+4. `__init__()`:  
     - 3.1: `(width, height)`, `background_color` -> \<int>: initialize the pyglet parameters.  
     - 3.2: define the view setup.  
-4. `await_frame_skip()`: define the wait time for frame skipping.  
-5. `get_play_action()` -> _int_: define the played action getter.  
-6. `on_draw(dt)`: define the view loop, with refresh rate dt.  
+5. `on_draw()`: define the view loop.  
+6. `get_play_action()` -> _int_: define the play action getter.  
 
 #### 3.2 View with custom interface
 
 Wrap the environment view in a custom interface.  
 
 **file `env/view.py`**, **class `CustomView`**   
-1. `PYGLET` -> _bool_: set to False.  
-2. `__init__()`: define the view setup.  
-3. `await_frame_skip()`: define the wait time for frame skipping.  
-4. `get_play_action()` -> _int_: define the played action getter.  
-5. `on_draw(dt)`: define the view loop, with refresh rate dt.  
-6. `clear()`: define the view clearing function.  
-7. create additional resources.  
+1. `DT` -> `float`: set the clock schedule interval.
+2. `PYGLET` -> _bool_: set to False.  
+3. `__init__()`: (optional) define the view setup. 
+4. `clear()`: (optional) define the view clearing function.   
+5. `on_draw()`: (optional) define the view loop.  
+6. `get_play_action()` -> _int_: define the play action getter.  
+7. (optional) create additional resources.  
 
 ### 4. Hyperparameter tuning
 
