@@ -17,6 +17,8 @@ All sections to be modified are indicated by comments. Are to be modified only:
 - The environment view wrapper file: `env/view.py`.  
 - The DQN hyperparameter configuration file: `dqn/config/dqn_config.py`.  
 
+See `custom_envs_w_frameworQ.txt`.
+
 ### 1. Model
 
 Create the custom environment model.  
@@ -59,7 +61,7 @@ Wrap the environment controller in gym.
 Wrap the environment view in pyglet.  
 
 **file `env/view.py`**, **class `PygletView`**   
-1. `DT` -> `float`: set the clock schedule interval.
+1. `DT` -> _float_: set the clock schedule interval.
 2. `PYGLET` -> _bool_: set to True.  
 3. `import`: import the environment utils global constants.  
 4. `__init__()`:  
@@ -73,7 +75,7 @@ Wrap the environment view in pyglet.
 Wrap the environment view in a custom interface.  
 
 **file `env/view.py`**, **class `CustomView`**   
-1. `DT` -> `float`: set the clock schedule interval.
+1. `DT` -> _float_: set the clock schedule interval.
 2. `PYGLET` -> _bool_: set to False.  
 3. `__init__()`: (optional) define the view setup. 
 4. `clear()`: (optional) define the view clearing function.   
