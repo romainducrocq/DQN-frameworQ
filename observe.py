@@ -15,7 +15,7 @@ class Observe(View):
         os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
         os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
 
-        super(Observe, self).__init__(name, make_env(env=env, repeat=HYPER_PARAMS['repeat'], max_episode_steps=args.max_steps))
+        super(Observe, self).__init__(name, make_env(env=env, max_episode_steps=args.max_steps))
 
         self.network = getattr(Networks, {
             "DQNAgent": "DeepQNetwork",
@@ -33,20 +33,26 @@ class Observe(View):
 
         self.obs = np.zeros(reduce(lambda x, y: x * y, list(self.env.observation_space.shape)), dtype=np.float32)
 
+        self.repeat = 0
+        self.action = 0
+
     def setup(self):
         self.obs = self.env.reset()
 
-    def loop(self):
-        action = self.network.actions([self.obs.tolist()])[0]
+        self.repeat = 0
 
-        self.obs, _, done, info = self.env.step(action)
+    def loop(self):
+        if self.repeat % (HYPER_PARAMS['repeat'] or 1) == 0:
+            self.action = self.network.actions([self.obs.tolist()])[0]
+
+        self.repeat += 1
+
+        self.obs, _, done, info = self.env.step(self.action)
         if done:
             self.setup()
 
             print()
             [print(k, ":", info[k]) for k in info]
-
-        self.await_frame_skip()
 
 
 if __name__ == "__main__":
