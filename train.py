@@ -11,7 +11,7 @@ from datetime import timedelta
 
 
 class Train:
-    def __init__(self, args, env):
+    def __init__(self, env, args):
         os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
         os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
 
@@ -137,10 +137,7 @@ if __name__ == "__main__":
                              'PerDuelingDoubleDQNAgent'
                         )
 
-    train = Train(
-        args=parser.parse_args(),
-        env=Env(train=True)
-    )
+    train = Train(env=Env("train"), args=parser.parse_args())
 
     train.init_replay_memory_buffer()
 

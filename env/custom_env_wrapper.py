@@ -10,10 +10,10 @@ import numpy as np
 class CustomEnvWrapper(gym.Env):
     metadata = {'render.modes': ['human']}
 
-    def __init__(self, train=False):
+    def __init__(self, m):
         super(CustomEnvWrapper, self).__init__()
 
-        self.train = train
+        self.mode = {"train": False, "observe": False, "play": False, m: True}
 
         self.steps = 0
         self.total_reward = 0.
@@ -83,7 +83,7 @@ class CustomEnvWrapper(gym.Env):
         # """CHANGE RESET HERE""" ######################################################################################
         ################################################################################################################
 
-        if not self.train:
+        if not self.mode["train"]:
             self.reset_render()
 
         return self._obs()
@@ -92,7 +92,7 @@ class CustomEnvWrapper(gym.Env):
         # """CHANGE STEP HERE""" #######################################################################################
         ################################################################################################################
 
-        if not self.train:
+        if not self.mode["train"]:
             self.step_render()
 
         self.steps += 1
