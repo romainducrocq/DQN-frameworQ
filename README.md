@@ -20,7 +20,7 @@ How to use:
 5. And beat the AI with `python3 play.py` to assert dominance on the machines.  
 
 See `demo/` for a complete guide on how to use bin scripts, build a custom environment and run the programs.  
-See `demo/examples/` for implementations of custom environments with frameworkQ.  
+See `demo/custom_envs_w_frameworQ.txt` for implementations of custom environments with frameworkQ.  
 
 ****
 
@@ -41,9 +41,9 @@ make: `cd bin/ && bash make.sh`
 
 ****
 
-### Custom environments with frameworkQ
+### Custom environments with frameworQ
 
-- initial-DQN: `demo/examples/initial-DQN.tar.gz`  
+- initial-DQN: `demo/custom_envs_w_frameworQ.txt`
 
 ![Demo gif initial-DQN](demo/media/initial-DQN_demo.gif)
 
@@ -51,7 +51,7 @@ make: `cd bin/ && bash make.sh`
 
 <br>
 
-- flappy-seamonkai: `demo/examples/flappy-seamonkai.tar.gz`  
+- flappy-seamonkai: `demo/custom_envs_w_frameworQ.txt`
 
 ![Demo gif flappy-seamonkai](demo/media/flappy-seamonkai_demo.gif)
 
