@@ -17,14 +17,16 @@ class Observe(View):
 
         super(Observe, self).__init__(name, make_env(env=env, max_episode_steps=args.max_steps))
 
+        self.model_pack = args.d.split('/')[-1].split('_model.pack')[0]
+
         self.network = getattr(Networks, {
             "DQNAgent": "DeepQNetwork",
             "DoubleDQNAgent": "DeepQNetwork",
             "DuelingDoubleDQNAgent": "DuelingDeepQNetwork",
             "PerDuelingDoubleDQNAgent": "DuelingDeepQNetwork"
-        }[args.d.split('_')[0].split('save/')[1]])(
+        }[self.model_pack.split('_lr')[0]])(
             device(("cuda:" + args.gpu) if cuda.is_available() else "cpu"),
-            float(args.d.split('_')[1].split('lr')[1]),
+            float(self.model_pack.split('_lr')[1].split('_')[0]),
             reduce(lambda x, y: x * y, list(self.env.observation_space.shape)),
             self.env.action_space.n
         )

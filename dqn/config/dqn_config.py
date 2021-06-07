@@ -20,7 +20,7 @@ HYPER_PARAMS = {
     'save_freq': 10000,                  # Save frequency
     'log_freq': 1000,                    # Log frequency
     'save_dir': './save/',               # Save directory
-    'log_dir': './logs/',                # Log directory
+    'log_dir': './logs/train/',          # Log directory
     'load': True,                        # Load model
     'repeat': 5,                         # Repeat action
     'max_episode_steps': 5000,           # Time limit episode steps
