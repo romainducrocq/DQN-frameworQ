@@ -11,12 +11,12 @@ from datetime import timedelta
 
 
 class Train:
-    def __init__(self, env, args):
+    def __init__(self, args):
         os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
         os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
 
         self.env = make_env(
-            env=env,
+            env=Env(type(self).__name__.lower()),
             repeat=args.repeat,
             max_episode_steps=args.max_episode_steps,
             n_env=args.n_env
@@ -30,8 +30,8 @@ class Train:
             epsilon_min=args.eps_min,
             epsilon_decay=args.eps_dec,
             epsilon_exp_decay=args.eps_dec_exp,
-            input_dim=reduce(lambda x, y: x*y, list(env.observation_space.shape)),
-            output_dim=env.action_space.n,
+            input_dim=reduce(lambda x, y: x*y, list(self.env.observation_space.shape)),
+            output_dim=self.env.action_space.n,
             batch_size=args.bs,
             min_buffer_size=args.min_mem,
             buffer_size=args.max_mem,
@@ -107,6 +107,11 @@ class Train:
             if bool(self.max_total_steps) and (step * self.agent.n_env) >= self.max_total_steps:
                 exit()
 
+    def run(self):
+        self.init_replay_memory_buffer()
+
+        self.train_loop()
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="TRAIN")
@@ -140,8 +145,4 @@ if __name__ == "__main__":
                              'PerDuelingDoubleDQNAgent'
                         )
 
-    train = Train(env=Env("train"), args=parser.parse_args())
-
-    train.init_replay_memory_buffer()
-
-    train.train_loop()
+    Train(parser.parse_args()).run()

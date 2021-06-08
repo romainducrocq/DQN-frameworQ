@@ -5,8 +5,12 @@ import argparse
 
 
 class Play(View):
-    def __init__(self, name, env, args):
-        super(Play, self).__init__(name, make_env(env=env, max_episode_steps=args.max_s))
+    def __init__(self, args):
+        super(Play, self).__init__(type(self).__name__.upper(),
+                                   make_env(
+                                       env=Env(type(self).__name__.lower(), p=args.player),
+                                       max_episode_steps=args.max_s)
+                                   )
 
         self.ep = 0
 
@@ -48,6 +52,5 @@ if __name__ == "__main__":
     parser.add_argument('-log', type=str2bool, default=False, help='Log csv to ./logs/test/')
     parser.add_argument('-log_s', type=int, default=0, help='Log step if > 0, else episode')
     parser.add_argument('-player', type=str, default='player', help='Player')
-    parse_args = parser.parse_args()
 
-    Play("PLAY", Env("play", p=parse_args.player), parse_args).run()
+    Play(parser.parse_args()).run()
