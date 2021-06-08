@@ -25,7 +25,7 @@ class Play(View):
         action = self.get_play_action()
 
         _, _, done, info = self.env.step(action)
-        Env.log_info_csv(info, done, *self.log)
+        self.env.log_info_writer(info, done, *self.log)
 
         if done:
             self.setup()
@@ -48,5 +48,6 @@ if __name__ == "__main__":
     parser.add_argument('-log', type=str2bool, default=False, help='Log csv to ./logs/test/')
     parser.add_argument('-log_s', type=int, default=0, help='Log step if > 0, else episode')
     parser.add_argument('-player', type=str, default='player', help='Player')
+    parse_args = parser.parse_args()
 
-    Play("PLAY", Env("play"), parser.parse_args()).run()
+    Play("PLAY", Env("play", p=parse_args.player), parse_args).run()

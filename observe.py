@@ -57,7 +57,7 @@ class Observe(View):
         self.repeat += 1
 
         self.obs, _, done, info = self.env.step(self.action)
-        Env.log_info_csv(info, done, *self.log)
+        self.env.log_info_writer(info, done, *self.log)
 
         if done:
             self.setup()
