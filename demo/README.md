@@ -112,14 +112,23 @@ deactivate
 ```
 PLAY
 
-python3 play.py
+python3 play.py [-h] [-max_s MAX_S] [-max_e MAX_E] [-log LOG] [-log_s LOG_S]
+                [-player PLAYER]
+
+optional arguments:
+  -h, --help      show this help message and exit
+  -max_s MAX_S    Max steps per episode if > 0, else inf
+  -max_e MAX_E    Max episodes if > 0, else inf
+  -log LOG        Log csv to ./logs/test/
+  -log_s LOG_S    Log step if > 0, else episode
+  -player PLAYER  Player
 ```
 
 2. tensorboard
 ```
 VISUALIZE
 
-tensorboard --logdir ./logs/
+tensorboard --logdir ./logs/train/
 
 http://localhost:6006/
 ```
@@ -128,13 +137,17 @@ http://localhost:6006/
 ```
 OBSERVE
 
-python3 observe.py [-h] -d D [-max_steps MAX_STEPS] [-gpu GPU]
+python3 observe.py [-h] -d D [-gpu GPU] [-max_s MAX_S] [-max_e MAX_E]
+                   [-log LOG] [-log_s LOG_S]
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -d D                  Directory
-  -max_steps MAX_STEPS  Max episode steps
-  -gpu GPU              GPU #
+  -h, --help    show this help message and exit
+  -d D          Directory
+  -gpu GPU      GPU #
+  -max_s MAX_S  Max steps per episode if > 0, else inf
+  -max_e MAX_E  Max episodes if > 0, else inf
+  -log LOG      Log csv to ./logs/test/
+  -log_s LOG_S  Log step if > 0, else episode
 ```
 
 4. train.py

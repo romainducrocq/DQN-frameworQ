@@ -15,8 +15,8 @@ The following algorithms are implemented:
 How to use:  
 1. Create a custom environment in `env/` and tune its hyperparameters in `dqn/config/dqn_config.py` (`demo/`).  
 2. Train the model with `python3 train.py -algo PerDuelingDoubleDQNAgent -max_total_steps 10000000`.  
-3. Observe with `python3 observe.py -d save/PerDuelingDoubleDQNAgent_lr0.0001_model.pack -max_steps 0`.  
-4. Visualize the learning curves in tensorboard with `tensorboard --logdir ./logs/`.  
+3. Observe with `python3 observe.py -d save/PerDuelingDoubleDQNAgent_lr0.0001_model.pack`.  
+4. Visualize the learning curves in tensorboard with `tensorboard --logdir ./logs/train/`.  
 5. And beat the AI with `python3 play.py` to assert dominance on the machines.  
 
 See `demo/` for a complete guide on how to use bin scripts, build a custom environment and run the programs.  

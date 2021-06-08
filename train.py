@@ -50,6 +50,8 @@ class Train:
         self.agent.load_model()
 
         print()
+        print("TRAIN")
+        print()
         print(args.algo)
         print()
         print(self.agent.online_network)
@@ -103,11 +105,12 @@ class Train:
             self.agent.save_model()
 
             if bool(self.max_total_steps) and (step * self.agent.n_env) >= self.max_total_steps:
-                break
+                exit()
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="TRAIN")
+    str2bool = (lambda v: v.lower() in ("yes", "y", "true", "t", "1"))
     parser.add_argument('-gpu', type=str, default=HYPER_PARAMS["gpu"], help='GPU #')
     parser.add_argument('-n_env', type=int, default=HYPER_PARAMS["n_env"], help='Multi-processing environments')
     parser.add_argument('-lr', type=float, default=HYPER_PARAMS["lr"], help='Learning rate')
@@ -115,18 +118,18 @@ if __name__ == "__main__":
     parser.add_argument('-eps_start', type=float, default=HYPER_PARAMS["eps_start"], help='Epsilon start')
     parser.add_argument('-eps_min', type=float, default=HYPER_PARAMS["eps_min"], help='Epsilon min')
     parser.add_argument('-eps_dec', type=float, default=HYPER_PARAMS["eps_dec"], help='Epsilon decay')
-    parser.add_argument('-eps_dec_exp', type=bool, default=HYPER_PARAMS["eps_dec_exp"], help='Epsilon exponential decay')
+    parser.add_argument('-eps_dec_exp', type=str2bool, default=HYPER_PARAMS["eps_dec_exp"], help='Epsilon exponential decay')
     parser.add_argument('-bs', type=int, default=HYPER_PARAMS["bs"], help='Batch size')
     parser.add_argument('-min_mem', type=int, default=HYPER_PARAMS["min_mem"], help='Replay memory buffer min size')
     parser.add_argument('-max_mem', type=int, default=HYPER_PARAMS["max_mem"], help='Replay memory buffer max size')
     parser.add_argument('-target_update_freq', type=int, default=HYPER_PARAMS["target_update_freq"], help='Target network update frequency')
-    parser.add_argument('-target_soft_update', type=bool, default=HYPER_PARAMS["target_soft_update"], help='Target network soft update')
+    parser.add_argument('-target_soft_update', type=str2bool, default=HYPER_PARAMS["target_soft_update"], help='Target network soft update')
     parser.add_argument('-target_soft_update_tau', type=float, default=HYPER_PARAMS["target_soft_update_tau"], help='Target network soft update tau rate')
     parser.add_argument('-save_freq', type=int, default=HYPER_PARAMS["save_freq"], help='Save frequency')
     parser.add_argument('-log_freq', type=int, default=HYPER_PARAMS["log_freq"], help='Log frequency')
     parser.add_argument('-save_dir', type=str, default=HYPER_PARAMS["save_dir"], help='Save directory')
     parser.add_argument('-log_dir', type=str, default=HYPER_PARAMS["log_dir"], help='Log directory')
-    parser.add_argument('-load', type=bool, default=HYPER_PARAMS["load"], help='Load model')
+    parser.add_argument('-load', type=str2bool, default=HYPER_PARAMS["load"], help='Load model')
     parser.add_argument('-repeat', type=int, default=HYPER_PARAMS["repeat"], help='Steps repeat action')
     parser.add_argument('-max_episode_steps', type=int, default=HYPER_PARAMS["max_episode_steps"], help='Episode step limit')
     parser.add_argument('-max_total_steps', type=int, default=HYPER_PARAMS["max_total_steps"], help='Max total training steps')

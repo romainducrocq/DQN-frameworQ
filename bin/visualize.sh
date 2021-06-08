@@ -2,11 +2,7 @@
 
 function run () {
 
-if [ "$1" = "-test" ]; then
-  tensorboard --logdir ./logs/test/
-else
-  tensorboard --logdir ./logs/train/
-fi
+tensorboard --logdir ./logs/train/
 
 }
 
@@ -14,7 +10,7 @@ cd ..
 
 source venv/bin/activate
 
-run "$1"
+run
 
 deactivate
 
