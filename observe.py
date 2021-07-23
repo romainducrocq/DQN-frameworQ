@@ -1,5 +1,4 @@
-from env import Env, View
-from dqn.config import HYPER_PARAMS
+from env import Env, HYPER_PARAMS, network_config, View
 from dqn import make_env, Networks
 
 import os
@@ -30,6 +29,7 @@ class Observe(View):
         }[model_pack.split('_lr')[0]])(
             device(("cuda:" + args.gpu) if cuda.is_available() else "cpu"),
             float(model_pack.split('_lr')[1].split('_')[0]),
+            network_config,
             self.env.observation_space,
             self.env.action_space.n
         )
