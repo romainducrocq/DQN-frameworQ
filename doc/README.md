@@ -8,24 +8,28 @@
 - Visualize: `bash visualize.sh`.  
 - Play: `bash play.sh`.  
 
-### Build a custom environment
+### Build a customized environment
 
-This framework is designed to wrap custom environments for applying DQN algorithms.  
-All sections to be modified are indicated by comments. Are to be modified only:  
-- The environment model package: `env/custom_env/`.  
-- The environment controller wrapper file: `env/custom_env_wrapper.py`.  
-- The environment view wrapper file: `env/view.py`.  
-- The DQN hyperparameter configuration file: `dqn/config/dqn_config.py`.  
+This framework is designed to wrap customized environments for applying DQN algorithms.  
+All sections to be modified are indicated by comments. Is to be modified only:  
+- The environment package `env/`:  
+	- The environment model package: `env/custom_env/`.  
+	- The environment view wrapper file: `env/view.py`.  
+	- The environment controller wrapper file: `env/dqn_env.py`.  
+	- The hyperparameter configuration file: `env/dqn_config.py`.  
 
-See `custom_envs_w_frameworQ.txt`.
+The `dqn/` package and the main scripts `train.py`, `observe.py`, `play.py` are ready to use.  
+They do not require any modifications.  
+
+For implementation examples, see `custom_envs_w_frameworQ.txt`.  
 
 ### 1. Model
 
-Create the custom environment model.  
+Create the customized environment model.  
 
 **package `env/custom_env/`**  
-1. create the environment model classes. E.g: car.py, track.py (initial-DQN).  
-2. create additional resources. E.g: utils.py, img/.  
+1. create the environment model classes.  
+2. create additional resources.  
 
 **file `env/custom_env/utils.py`**  
 1. `(W, H)` -> _(int, int)_: (optional) set the window resolution.  
@@ -36,21 +40,21 @@ Create the custom environment model.
 
 ### 2. Controller
 
-Wrap the environment controller in gym.  
+Wrap the environment controller in DQN logic.  
 
-**file `env/custom_env_wrapper.py`**, **class `CustomEnvWrapper`**   
+**file `env/dqn_env.py`**, **class `DqnEnv`**   
 1. `import`: import the environment model.  
 2. `__init__()`:  
     - 2.1: construct the environment objects.  
-    - 2.2: `lim_features` -> _dict_: set the feature scaling (min, max).  
+    - 2.2: `min_max` -> _dict_: set the feature scaling (min, max).  
     - 2.3: `action_space_n` -> _int_: set the action space size.  
     - 2.4: `observation_space_n`: -> _int_: set the observation space size.  
-3. `_obs()` -> _np.ndarray<np.float32>_: define the observation function, scaled in [0, 1].  
-4. `_rew()` -> _float_: define the step reward function, scaled in [0, 1].  
-5. `_done()` -> _bool_: define the end function.  
-6. `_info()` -> _dict_: (optional) add log infos.  
-7. `reset()` -> _np.ndarray_: define the initial state.  
-8. `step(action)` -> _(np.ndarray, float, bool, dict)_: define the transition dynamic for one timestep.  
+3. `obs()` -> _list_: define the observation function, scaled in [0, 1].  
+4. `rew()` -> _float_: define the step reward function, scaled in [0, 1].  
+5. `done()` -> _bool_: define the end flag function.  
+6. `info()` -> _dict_: (optional) add log infos.  
+7. `reset()`: define the initial state.  
+8. `step(action)`: define the transition dynamic for one timestep.  
 9. `reset_render()`: (optional) add reset instructions for the view only.  
 10. `step_render()`: (optional) add step instructions for the view only.  
 
@@ -87,13 +91,13 @@ Wrap the environment view in a custom interface.
 
 Tune the hyperparameters and the network configuration.  
 
-**file `dqn/config/dqn_config.py`**   
+**file `env/dqn_config.py`**   
 1. `HYPER_PARAMS` -> _dict_: set the hyperparameters.  
 2. `network_config(input_dim)` -> _(torch.nn.Sequential, function, function, int)_:  
     - 2.1 `net` -> _torch.nn.Sequential_: define the neural network.  
-    - 2.2 `optim_func` -> _function_: define the optimizer function.  
-    - 2.3 `loss_func` -> _function_: define the loss function.  
-    - 2.4 `fc_out_dim` -> _int_: set the output dimension passed to the dueling layer.  
+    - 2.2 `fc_out_dim` -> _int_: set the output dimension passed to the dueling layer.  
+    - 2.3 `optim_func` -> _function_: define the optimizer function.  
+    - 2.4 `loss_func` -> _function_: define the loss function.  
 
 ****
 
@@ -116,12 +120,13 @@ python3 play.py [-h] [-max_s MAX_S] [-max_e MAX_E] [-log LOG] [-log_s LOG_S]
                 [-player PLAYER]
 
 optional arguments:
-  -h, --help      show this help message and exit
-  -max_s MAX_S    Max steps per episode if > 0, else inf
-  -max_e MAX_E    Max episodes if > 0, else inf
-  -log LOG        Log csv to ./logs/test/
-  -log_s LOG_S    Log step if > 0, else episode
-  -player PLAYER  Player
+  -h, --help        show this help message and exit
+  -max_s MAX_S      Max steps per episode if > 0, else inf
+  -max_e MAX_E      Max episodes if > 0, else inf
+  -log LOG          Log csv to ./logs/test/
+  -log_s LOG_S      Log step if > 0, else episode
+  -log_dir LOG_DIR  Log directory
+  -player PLAYER    Player
 ```
 
 2. tensorboard
@@ -141,13 +146,14 @@ python3 observe.py [-h] -d D [-gpu GPU] [-max_s MAX_S] [-max_e MAX_E]
                    [-log LOG] [-log_s LOG_S]
 
 optional arguments:
-  -h, --help    show this help message and exit
-  -d D          Directory
-  -gpu GPU      GPU #
-  -max_s MAX_S  Max steps per episode if > 0, else inf
-  -max_e MAX_E  Max episodes if > 0, else inf
-  -log LOG      Log csv to ./logs/test/
-  -log_s LOG_S  Log step if > 0, else episode
+  -h, --help        show this help message and exit
+  -d D              Directory
+  -gpu GPU          GPU #
+  -max_s MAX_S      Max steps per episode if > 0, else inf
+  -max_e MAX_E      Max episodes if > 0, else inf
+  -log LOG          Log csv to ./logs/test/
+  -log_s LOG_S      Log step if > 0, else episode
+  -log_dir LOG_DIR  Log directory
 ```
 
 4. train.py
@@ -166,35 +172,31 @@ python3 train.py [-h] [-gpu GPU] [-n_env N_ENV] [-lr LR] [-gamma GAMMA]
                  [-max_total_steps MAX_TOTAL_STEPS] [-algo ALGO]
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -gpu GPU              GPU #
-  -n_env N_ENV          Multi-processing environments
-  -lr LR                Learning rate
-  -gamma GAMMA          Discount factor
-  -eps_start EPS_START  Epsilon start
-  -eps_min EPS_MIN      Epsilon min
-  -eps_dec EPS_DEC      Epsilon decay
-  -eps_dec_exp EPS_DEC_EXP
-                        Epsilon exponential decay
-  -bs BS                Batch size
-  -min_mem MIN_MEM      Replay memory buffer min size
-  -max_mem MAX_MEM      Replay memory buffer max size
-  -target_update_freq TARGET_UPDATE_FREQ
-                        Target network update frequency
-  -target_soft_update TARGET_SOFT_UPDATE
-                        Target network soft update
-  -target_soft_update_tau TARGET_SOFT_UPDATE_TAU
-                        Target network soft update tau rate
-  -save_freq SAVE_FREQ  Save frequency
-  -log_freq LOG_FREQ    Log frequency
-  -save_dir SAVE_DIR    Save directory
-  -log_dir LOG_DIR      Log directory
-  -load LOAD            Load model
-  -repeat REPEAT        Steps repeat action
-  -max_episode_steps MAX_EPISODE_STEPS
-                        Episode step limit
-  -max_total_steps MAX_TOTAL_STEPS
-                        Max total training steps
-  -algo ALGO            DQNAgent DoubleDQNAgent DuelingDoubleDQNAgent
-                        PerDuelingDoubleDQNAgent
+  -h, --help                                      show this help message and exit
+  -gpu GPU                                        GPU #
+  -n_env N_ENV                                    Multi-processing environments
+  -lr LR                                          Learning rate
+  -gamma GAMMA                                    Discount factor
+  -eps_start EPS_START                            Epsilon start
+  -eps_min EPS_MIN                                Epsilon min
+  -eps_dec EPS_DEC                                Epsilon decay
+  -eps_dec_exp EPS_DEC_EXP                        Epsilon exponential decay
+  -bs BS                                          Batch size
+  -min_mem MIN_MEM                                Replay memory buffer min size
+  -max_mem MAX_MEM                                Replay memory buffer max size
+  -target_update_freq TARGET_UPDATE_FREQ          Target network update frequency
+  -target_soft_update TARGET_SOFT_UPDATE          Target network soft update
+  -target_soft_update_tau TARGET_SOFT_UPDATE_TAU  Target network soft update tau rate
+  -save_freq SAVE_FREQ                            Save frequency
+  -log_freq LOG_FREQ                              Log frequency
+  -save_dir SAVE_DIR                              Save directory
+  -log_dir LOG_DIR                                Log directory
+  -load LOAD                                      Load model
+  -repeat REPEAT                                  Steps repeat action
+  -max_episode_steps MAX_EPISODE_STEPS            Episode step limit
+  -max_total_steps MAX_TOTAL_STEPS                Max total training steps
+  -algo ALGO                                      DQNAgent 
+                                                  DoubleDQNAgent 
+                                                  DuelingDoubleDQNAgent
+                                                  PerDuelingDoubleDQNAgent
 ```
