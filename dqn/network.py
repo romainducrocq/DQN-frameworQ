@@ -14,7 +14,9 @@ class Network(nn.Module):
     def __init__(self, device, input_dim):
         super(Network, self).__init__()
 
-        self.net, self.optim_func, self.loss_func, self.fc_out_dim = network_config(input_dim)
+        self.net, self.fc_out_dim, optim_func, loss_func = network_config(input_dim)
+        self.optim_func = (lambda params, lr: optim_func(params, lr=lr))
+        self.loss_func = (lambda reduction: loss_func(reduction=reduction))
 
         self.device = device
 
