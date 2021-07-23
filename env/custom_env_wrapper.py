@@ -1,6 +1,4 @@
-# """CHANGE CUSTOM ENV IMPORT HERE""" ##################################################################################
 from .custom_env import CustomEnv
-########################################################################################################################
 
 import gym
 from gym import spaces
@@ -22,51 +20,40 @@ class CustomEnvWrapper(gym.Env):
         self.steps = 0
         self.total_reward = 0.
 
-        # """CHANGE ENV CONSTRUCT HERE""" ##############################################################################
-        self.custom_env = CustomEnv()
-        ################################################################################################################
+        self.custom_env = CustomEnv(self.mode, self.player)
 
-        # """CHANGE ACTION AND OBSERVATION SPACE SIZES HERE""" #########################################################
         action_space_n = self.custom_env.action_space_n
-        observation_space_n = self.custom_env.observation_space_n
-        ################################################################################################################
+        observation_space_n = (self.custom_env.observation_space_n,) \
+            if isinstance(self.custom_env.observation_space_n, int) else self.custom_env.observation_space_n
 
         self.action_space = spaces.Discrete(action_space_n)
-        self.observation_space = spaces.Box(
-            low=0., high=1., shape=(observation_space_n,) if type(observation_space_n) is int else observation_space_n,
-            dtype=np.float32
-        )
+        self.observation_space = spaces.Box(low=0., high=1., shape=observation_space_n, dtype=np.float32)
 
         self.log_info_buffer = []
 
+    @property
+    def get_env(self):
+        return self.custom_env
+
     def _obs(self):
-        obs = []
+        obs = self.custom_env.obs()
 
-        # """CHANGE OBSERVATION HERE""" ################################################################################
-        obs += self.custom_env.obs()
-        ################################################################################################################
-
-        return np.array(obs, dtype=np.float32)
+        if isinstance(obs, np.ndarray):
+            if obs.dtype == np.float32:
+                return obs
+            else:
+                return obs.astype('float32')
+        else:
+            return np.array(obs, dtype=np.float32)
 
     def _rew(self):
-        rew = 0.
-
-        # """CHANGE REWARD HERE""" #####################################################################################
-        rew += self.custom_env.rew()
-        ################################################################################################################
+        rew = self.custom_env.rew()
 
         self.total_reward += rew
         return rew
 
     def _done(self):
-        done = False
-
-        # """CHANGE DONE HERE""" #######################################################################################
-        if self.custom_env.done():
-            done = True
-        ################################################################################################################
-
-        return done
+        return self.custom_env.done()
 
     def _info(self):
         info = {
@@ -75,10 +62,7 @@ class CustomEnvWrapper(gym.Env):
         }
 
         if not self.mode["train"]:
-
-            # """CHANGE INFO HERE""" ###################################################################################
             info.update(self.custom_env.info())
-            ############################################################################################################
 
         return info
 
@@ -86,9 +70,7 @@ class CustomEnvWrapper(gym.Env):
         self.steps = 0
         self.total_reward = 0.
 
-        # """CHANGE RESET HERE""" ######################################################################################
         self.custom_env.reset()
-        ################################################################################################################
 
         if not self.mode["train"]:
             self.reset_render()
@@ -96,9 +78,7 @@ class CustomEnvWrapper(gym.Env):
         return self._obs()
 
     def step(self, action):
-        # """CHANGE STEP HERE""" #######################################################################################
         self.custom_env.step(action)
-        ################################################################################################################
 
         if not self.mode["train"]:
             self.step_render()
@@ -108,14 +88,10 @@ class CustomEnvWrapper(gym.Env):
         return self._obs(), self._rew(), self._done(), self._info()
 
     def reset_render(self):
-        # """CHANGE RESET RENDER HERE""" ###############################################################################
         self.custom_env.reset_render()
-        ################################################################################################################
 
     def step_render(self):
-        # """CHANGE STEP RENDER HERE""" ################################################################################
         self.custom_env.step_render()
-        ################################################################################################################
 
     def render(self, mode='human'):
         pass
