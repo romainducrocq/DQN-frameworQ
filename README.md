@@ -1,7 +1,7 @@
 ### frameworQ
 
-A DQN framework for custom environments. Supports:  
-- Custom environments with openai gym.  
+A DQN framework for customized environments. Supports:  
+- customized environments with openai gym.  
 - Dynamic save and load with msgpack.  
 - Multi-processing learning.  
 - Tensorboard visualization.  
@@ -13,14 +13,14 @@ The following algorithms are implemented:
 - Per3DQN: Dueling Double DQN with Priority Experience Replay.  
 
 How to use:  
-1. Create a custom environment in `env/` and tune its hyperparameters in `dqn/config/dqn_config.py` (`demo/`).  
+1. Create a customized environment in `env/` and tune its hyperparameters in `env/dqn_config.py` (see `doc/`).  
 2. Train the model with `python3 train.py -algo PerDuelingDoubleDQNAgent -max_total_steps 10000000`.  
 3. Observe with `python3 observe.py -d save/PerDuelingDoubleDQNAgent_lr0.0001_model.pack`.  
 4. Visualize the learning curves in tensorboard with `tensorboard --logdir ./logs/train/`.  
 5. And beat the AI with `python3 play.py` to assert dominance on the machines.  
 
-See `demo/` for a complete guide on how to use bin scripts, build a custom environment and run the programs.  
-See `demo/custom_envs_w_frameworQ.txt` for implementations of custom environments with frameworkQ.  
+See `doc/` for a complete guide on how to use bin scripts, build a customized environment and run the programs.  
+See `doc/custom_envs_w_frameworQ.txt` for implementations of customized environments with frameworkQ.  
 
 ****
 
@@ -41,21 +41,21 @@ make: `cd bin/ && bash make.sh`
 
 ****
 
-### Custom environments with frameworQ
+### Customized environments with frameworQ
 
 - initial-DQN: `demo/custom_envs_w_frameworQ.txt`
 
-![Demo gif initial-DQN](demo/media/initial-DQN_demo.gif)
+![Demo gif initial-DQN](doc/media/initial-DQN_demo.gif)
 
-![Demo tensorboard initial-DQN](demo/media/initial-DQN_demo_tensorboard.png)
+![Demo tensorboard initial-DQN](doc/media/initial-DQN_demo_tensorboard.png)
 
 <br>
 
 - flappy-seamonkai: `demo/custom_envs_w_frameworQ.txt`
 
-![Demo gif flappy-seamonkai](demo/media/flappy-seamonkai_demo.gif)
+![Demo gif flappy-seamonkai](doc/media/flappy-seamonkai_demo.gif)
 
-![Demo tensorboard flappy-seamonkai](demo/media/flappy-seamonkai_demo_tensorboard.png)
+![Demo tensorboard flappy-seamonkai](doc/media/flappy-seamonkai_demo_tensorboard.png)
 
 ****
 
