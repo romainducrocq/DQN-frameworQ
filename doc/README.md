@@ -93,7 +93,7 @@ Tune the hyperparameters and the network configuration.
 
 **file `env/dqn_config.py`**   
 1. `HYPER_PARAMS` -> _dict_: set the hyperparameters.  
-2. `network_config(input_dim)` -> _(torch.nn.Sequential, function, function, int)_:  
+2. `network_config(input_dim)` -> _(torch.nn.Sequential, int, function, function)_:  
     - 2.1 `net` -> _torch.nn.Sequential_: define the neural network.  
     - 2.2 `fc_out_dim` -> _int_: set the output dimension passed to the dueling layer.  
     - 2.3 `optim_func` -> _function_: define the optimizer function.  
