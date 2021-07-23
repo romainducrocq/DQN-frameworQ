@@ -1,5 +1,5 @@
-from env import Env, View
-from dqn import make_env
+from env import CustomEnv, View
+from dqn import CustomEnvWrapper, make_env
 
 import argparse
 
@@ -8,7 +8,7 @@ class Play(View):
     def __init__(self, args):
         super(Play, self).__init__(type(self).__name__.upper(),
                                    make_env(
-                                       env=Env(type(self).__name__.lower(), p=args.player),
+                                       env=CustomEnvWrapper(CustomEnv(type(self).__name__.lower(), p=args.player)),
                                        max_episode_steps=args.max_s)
                                    )
 

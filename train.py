@@ -1,5 +1,5 @@
-from env import Env, HYPER_PARAMS, network_config
-from dqn import make_env, Agents
+from env import HYPER_PARAMS, network_config, CustomEnv
+from dqn import CustomEnvWrapper, make_env, Agents
 
 import os
 import time
@@ -14,7 +14,7 @@ class Train:
         os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
 
         self.env = make_env(
-            env=Env(type(self).__name__.lower()),
+            env=CustomEnvWrapper(CustomEnv(type(self).__name__.lower())),
             repeat=args.repeat,
             max_episode_steps=args.max_episode_steps,
             n_env=args.n_env

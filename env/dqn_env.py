@@ -1,5 +1,5 @@
 # """CHANGE CUSTOM ENV IMPORT HERE""" ##################################################################################
-from .utils import RES
+from .custom_env import RES
 ########################################################################################################################
 
 
@@ -8,9 +8,9 @@ class DqnEnv:
     def min_max_scale(self, x, feature):
         return (x - self.min_max[feature][0]) / (self.min_max[feature][1] - self.min_max[feature][0])
 
-    def __init__(self, mode, player):
-        self.mode = mode
-        self.player = player
+    def __init__(self, m, p=None):
+        self.mode = {"train": False, "observe": False, "play": False, m: True}
+        self.player = p if self.mode["play"] else None
 
         # """CHANGE ENV CONSTRUCT HERE""" ##############################################################################
         ################################################################################################################
