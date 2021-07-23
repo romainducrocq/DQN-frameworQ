@@ -29,7 +29,6 @@ class CustomEnvWrapper(gym.Env):
 
         self.log_info_buffer = []
 
-    @property
     def get_env(self):
         return self.custom_env
 
