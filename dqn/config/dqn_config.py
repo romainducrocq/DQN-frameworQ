@@ -42,7 +42,7 @@ def network_config(input_dim):
     activation = nn.ELU()
 
     net = nn.Sequential(
-        nn.Linear(input_dim, hidden_dims[0]),
+        nn.Linear(input_dim.shape[0], hidden_dims[0]),
         activation,
         nn.Linear(hidden_dims[0], hidden_dims[1]),
         activation
