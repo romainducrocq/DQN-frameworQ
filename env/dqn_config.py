@@ -1,5 +1,6 @@
 import torch.nn as nn
 import torch.optim as optim
+from torch import no_grad, as_tensor
 
 # """CHANGE HYPER PARAMETERS HERE""" ###################################################################################
 HYPER_PARAMS = {
