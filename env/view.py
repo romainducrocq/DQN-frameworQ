@@ -1,7 +1,3 @@
-# """CHANGE CLOCK SCHEDULE INTERVAL HERE""" ############################################################################
-DT = 0.002
-########################################################################################################################
-
 # """CHANGE IS PYGLET VIEW HERE""" #####################################################################################
 PYGLET = True
 ########################################################################################################################
@@ -82,7 +78,7 @@ class PygletView(pyglet.window.Window if PYGLET else object):
 
         return play_action
 
-    def on_draw(self, dt=DT):
+    def on_draw(self, dt=0.002):
         self.clear()
 
         self.loop()
@@ -111,7 +107,7 @@ class PygletView(pyglet.window.Window if PYGLET else object):
         raise NotImplementedError
 
     def run(self):
-        pyglet.clock.schedule_interval(self.on_draw, DT)
+        pyglet.clock.schedule_interval(self.on_draw, 0.002)
         pyglet.app.run()
 
 
@@ -121,6 +117,10 @@ class PygletView(pyglet.window.Window if PYGLET else object):
 
 if not PYGLET:
     import time
+
+    # """CHANGE CLOCK SCHEDULE INTERVAL HERE""" ########################################################################
+    DT = 0.
+    ####################################################################################################################
 
 
 class CustomView:
