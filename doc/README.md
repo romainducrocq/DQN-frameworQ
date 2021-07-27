@@ -48,8 +48,8 @@ Wrap the environment controller in DQN logic.
     - 2.1: construct the environment objects.  
     - 2.2: `min_max` -> _dict_: set the feature scaling (min, max).  
     - 2.3: `action_space_n` -> _int_: set the action space size.  
-    - 2.4: `observation_space_n`: -> _int_: set the observation space size.  
-3. `obs()` -> _list_: define the observation function, scaled in [0, 1].  
+    - 2.4: `observation_space_n`: -> _int | tuple_: set the observation space size.  
+3. `obs()` -> _list | numpy.ndarray_: define the observation function, scaled in [0, 1].  
 4. `rew()` -> _float_: define the step reward function, scaled in [0, 1].  
 5. `done()` -> _bool_: define the end flag function.  
 6. `info()` -> _dict_: (optional) add log infos.  
@@ -85,6 +85,12 @@ Wrap the environment view in a custom interface.
 5. `on_draw()`: (optional) define the view loop.  
 6. `get_play_action()` -> _int_: define the play action getter.  
 7. (optional) create additional resources.  
+
+#### 3.3 No view
+
+Disable the environment view.  
+
+1. `PYGLET` -> _bool_: set to False.  
 
 ### 4. Hyperparameter tuning
 
