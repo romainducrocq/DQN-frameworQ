@@ -1,2 +1,3 @@
 - initial-DQN: https://github.com/romainducrocq/initial-DQN
 - flappy-seamonkai: https://github.com/romainducrocq/flappy-seamonkai
+- DQN-ITSCwPD: https://github.com/romainducrocq/DQN-ITSCwPD
