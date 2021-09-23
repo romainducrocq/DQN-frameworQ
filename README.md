@@ -12,10 +12,10 @@ The following algorithms are implemented:
 - 3DQN: Dueling Double DQN.  
 - Per3DQN: Dueling Double DQN with Priority Experience Replay.  
 
-How to use:  
+How to use (e.g. cmd values here):  
 1. Create a customized environment in `env/` and tune its hyperparameters in `env/dqn_config.py` (see `doc/`).  
-2. Train the model with `python3 train.py -algo PerDuelingDoubleDQNAgent -max_total_steps 10000000`.  
-3. Observe with `python3 observe.py -d save/PerDuelingDoubleDQNAgent_lr0.0001_model.pack`.  
+2. Train the model with `python3 train.py -algo DuelingDoubleDQNAgent -max_total_steps 10000000`.  
+3. Observe with `python3 observe.py -d save/DuelingDoubleDQNAgent_lr0.0001_model.pack`.  
 4. Visualize the learning curves in tensorboard with `tensorboard --logdir ./logs/train/`.  
 5. And beat the AI with `python3 play.py` to assert dominance on the machines.  
 
