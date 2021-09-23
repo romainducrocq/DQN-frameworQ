@@ -43,7 +43,7 @@ make: `cd bin/ && bash make.sh`
 
 ### Customized environments with frameworQ
 
-- initial-DQN: `demo/custom_envs_w_frameworQ.txt`
+- initial-DQN: `docs/custom_envs_w_frameworQ.txt`
 
 ![Demo gif initial-DQN](doc/media/initial-DQN_demo.gif)
 
@@ -51,11 +51,21 @@ make: `cd bin/ && bash make.sh`
 
 <br>
 
-- flappy-seamonkai: `demo/custom_envs_w_frameworQ.txt`
+- flappy-seamonkai: `docs/custom_envs_w_frameworQ.txt`
 
 ![Demo gif flappy-seamonkai](doc/media/flappy-seamonkai_demo.gif)
 
 ![Demo tensorboard flappy-seamonkai](doc/media/flappy-seamonkai_demo_tensorboard.png)
+
+<br>
+
+- : DQN-ITSCwPD: `docs/custom_envs_w_frameworQ.txt`
+
+![Demo 1 gif DQN-ITSCwPD](doc/media/DQN-ITSCwPD_demo_1.gif)
+
+![Demo 2 gif DQN-ITSCwPD](doc/media/DQN-ITSCwPD_demo_2.gif)
+
+![Demo tensorboard DQN-ITSCwPD](doc/media/DQN-ITSCwPD_demo_tensorboard.png)
 
 ****
 
