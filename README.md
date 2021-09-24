@@ -32,7 +32,7 @@ make: `cd bin/ && bash make.sh`
 > sudo apt-get update && sudo apt-get install build-essential libpq-dev libssl-dev openssl libffi-dev sqlite3 libsqlite3-dev libbz2-dev zlib1g-dev cmake  
 
 - python 3.7  
-> N=0 && while wget -q --method=HEAD https://www.python.org/ftp/python/3.7.$(( $N + 1 ))/Python-3.7.$(( $N + 1 )).tar.xz; do N=$(( $N + 1 )); done && wget https://www.python.org/ftp/python/3.7.$N/Python-3.7.$N.tar.xz && tar xvf Python-3.7.$N.tar.xz && cd Python-3.7.$N && ./configure && make && make altinstall && cd .. && rm -rv Python-3.7.$N.tar.xz Python-3.7.$N  
+> N=0 && while wget -q --method=HEAD https://www<area>.python.org/ftp/python/3.7.$(( $N + 1 ))/Python-3.7.$(( $N + 1 )).tar.xz; do N=$(( $N + 1 )); done && wget https://www<area>.python.org/ftp/python/3.7.$N/Python-3.7.$N.tar.xz && tar xvf Python-3.7.$N.tar.xz && cd Python-3.7.$N && ./configure && make && make altinstall && cd .. && rm -rv Python-3.7.$N.tar.xz Python-3.7.$N  
 
 - venv (pip)  
 > mkdir venv && python3.7 -m venv venv/  
