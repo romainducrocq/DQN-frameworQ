@@ -29,25 +29,25 @@ See `doc/custom_envs_w_frameworQ.txt` for implementations of customized environm
 make (venv): 3.a or `cd bin/ && bash make.sh`  
 make (conda): 3.b
 
-1. Apt packages  
-> sudo apt-get update && sudo apt-get install build-essential libpq-dev libssl-dev openssl libffi-dev sqlite3 libsqlite3-dev libbz2-dev zlib1g-dev cmake  
+1. apt packages  
+> apt-get update && apt-get install build-essential libpq-dev libssl-dev openssl libffi-dev sqlite3 libsqlite3-dev libbz2-dev zlib1g-dev cmake  
 
-2. Python 3.7  
+2. python 3.7  
 > m=0 && while wget -q --method=HEAD https<area>://www<area>.python.org/ftp/python/3.7.$(( $m + 1 ))/Python-3.7.$(( $m + 1 )).tar.xz; do m=$(( $m + 1 )); done && wget https<area>://www<area>.python.org/ftp/python/3.7.$m/Python-3.7.$m.tar.xz && tar xvf Python-3.7.$m.tar.xz && cd Python-3.7.$m && ./configure && make && make altinstall && cd .. && rm -rv Python-3.7.$m.tar.xz Python-3.7.$m  
 
-3. a. Venv (venv)  
+3. a. venv (venv)  
 > mkdir venv && python3.7 -m venv venv/  
 > source venv/bin/activate  
 > deactivate  
 
-3. b. Venv (conda)  
+3. b. venv (conda)  
 > (base) conda create -n frameworQ python=3.7 anaconda  
 > (base) conda activate frameworQ  
 > (frameworQ) conda install -n frameworQ pip3  
 > (frameworQ) conda deactivate  
 > (base) conda remove -n frameworQ --all  
 
-4. Pip packages  
+4. pip packages  
 > export TMPDIR='/var/tmp'  
 > (...) pip3 install 'pyglet==1.5.0' gym torch tensorboard 'msgpack==1.0.2' wheel --no-cache-dir  
 
