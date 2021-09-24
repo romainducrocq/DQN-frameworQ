@@ -38,7 +38,7 @@ make (conda): 3.b
 3. a. Venv (venv):  
 > mkdir venv && python3.7 -m venv venv/  
 > source venv/bin/activate  
-> (venv) __4. Pip3 packages__  
+> (venv) **4. Pip3 packages**  
 > deactivate  
 
 3. b. Venv (conda):  
