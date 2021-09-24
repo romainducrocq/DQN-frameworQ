@@ -38,14 +38,14 @@ make (conda): 3.b
 3. a. Venv (venv):  
 > mkdir venv && python3.7 -m venv venv/  
 > source venv/bin/activate  
-> (venv) ...  
+> (venv) ... *Pip3 packages*  
 > deactivate  
 
 3. b. Venv (conda):  
 > (base) conda create -n frameworQ python=3.7 anaconda  
 > (base) conda activate frameworQ  
 > (frameworQ) conda install -n frameworQ pip3  
-> (frameworQ) ...  
+> (frameworQ) ... *Pip3 packages*  
 > (frameworQ) conda deactivate  
 > (base) conda remove -n frameworQ --all  
 
@@ -83,4 +83,4 @@ make (conda): 3.b
 
 ****
 
-@rd
+@romainducrocq
