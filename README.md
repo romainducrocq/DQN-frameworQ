@@ -38,6 +38,7 @@ make (conda): 3.b
 3. a. Venv (venv):  
 > mkdir venv && python3.7 -m venv venv/  
 > source venv/bin/activate  
+> (venv) __4. Pip3 packages__  
 > deactivate  
 
 3. b. Venv (conda):  
@@ -48,7 +49,7 @@ make (conda): 3.b
 > (base) conda remove -n frameworQ --all  
 
 4. Pip3 packages:  
-> export TMPDIR='/var/tmp'  
+> (...) export TMPDIR='/var/tmp'  
 > (...) pip3 install 'pyglet==1.5.0' gym torch tensorboard 'msgpack==1.0.2' wheel --no-cache-dir  
 
 ****
