@@ -26,7 +26,7 @@ HYPER_PARAMS = {
     'repeat': 5,                         # Repeat action
     'max_episode_steps': 5000,           # Time limit episode steps
     'max_total_steps': 0,                # Max total training steps if > 0, else inf training
-    'algo': 'PerDuelingDoubleDQNAgent'   # DQNAgent
+    'algo': 'DuelingDoubleDQNAgent'      # DQNAgent
                                          # DoubleDQNAgent
                                          # DuelingDoubleDQNAgent
                                          # PerDuelingDoubleDQNAgent
