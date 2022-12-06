@@ -57,7 +57,7 @@ make (conda): 3.b
 
 ### Customized environments with frameworQ
 
-- flappy-seamonkai: https://github.com/romainducrocq/flappy-seamonkai
+- flappy-seamonkai: https://github.com/romainducrocq/DQN-flappy-seamonkai
 
 ![Demo gif flappy-seamonkai](doc/media/flappy-seamonkai_demo.gif)
 
@@ -65,7 +65,7 @@ make (conda): 3.b
 
 <br>
 
-- initial-DQN: https://github.com/romainducrocq/initial-DQN
+- initial-DQN: https://github.com/romainducrocq/DQN-initial-DQN
 
 ![Demo gif initial-DQN](doc/media/initial-DQN_demo.gif)
 
