@@ -1,4 +1,4 @@
-### frameworQ
+## DQN - frameworQ
 
 A DQN framework for customized environments. Supports:  
 - Customized environments with openai gym  
