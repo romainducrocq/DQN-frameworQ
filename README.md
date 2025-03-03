@@ -161,19 +161,19 @@ optional arguments:
 
 ### Customized environments with frameworQ
 
-- flappy-seamonkai: https://github.com/romainducrocq/DQN-flappy-seamonkai
+- DQN-FlappyBird: https://github.com/romainducrocq/DQN-FlappyBird
 
-![Demo gif flappy-seamonkai](doc/media/flappy-seamonkai_demo.gif)
+![Demo gif DQN-FlappyBird](doc/media/DQN-FlappyBird_demo.gif)
 
-![Demo tensorboard flappy-seamonkai](doc/media/flappy-seamonkai_demo_tensorboard.png)
+![Demo tensorboard DQN-FlappyBird](doc/media/DQN-FlappyBird_demo_tensorboard.png)
 
 <br>
 
-- initial-DQN: https://github.com/romainducrocq/DQN-initial-DQN
+- DQN-initial-d: https://github.com/romainducrocq/DQN-initial-d
 
-![Demo gif initial-DQN](doc/media/initial-DQN_demo.gif)
+![Demo gif DQN-initial-d](doc/media/DQN-initial-d_demo.gif)
 
-![Demo tensorboard initial-DQN](doc/media/initial-DQN_demo_tensorboard.png)
+![Demo tensorboard DQN-initial-d](doc/media/DQN-initial-d_demo_tensorboard.png)
 
 <br>
 
