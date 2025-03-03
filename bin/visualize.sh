@@ -1,17 +1,13 @@
 #!/usr/bin/bash
 
-function run () {
-
-tensorboard --logdir ./logs/train/
-
-}
-
-cd ..
+cd ../
 
 source venv/bin/activate
-
-run
-
+if [ -z "${1}" ]; then
+    tensorboard --logdir ./logs/train/
+else
+    tensorboard "${@}"
+fi
 deactivate
 
 exit

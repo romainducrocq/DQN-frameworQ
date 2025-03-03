@@ -1,17 +1,13 @@
 #!/usr/bin/bash
 
-function run () {
-
-python3 play.py
-
-}
-
-cd ..
+cd ../
 
 source venv/bin/activate
-
-run
-
+if [ -z "${1}" ]; then
+    python3 play.py
+else
+    python3 play.py "${@}"
+fi
 deactivate
 
 exit

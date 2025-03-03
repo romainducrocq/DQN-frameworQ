@@ -1,17 +1,13 @@
 #!/usr/bin/bash
 
-function run () {
-
-python3 train.py -algo DuelingDoubleDQNAgent -max_total_steps 10000000
-
-}
-
-cd ..
+cd ../
 
 source venv/bin/activate
-
-run
-
+if [ -z "${1}" ]; then
+    python3 train.py -algo DuelingDoubleDQNAgent -max_total_steps 10000000
+else
+    python3 train.py "${@}"
+fi
 deactivate
 
 exit
